@@ -2,25 +2,18 @@ package coffee;
 
 public class CoffeeMachine {
     private final int MAX_USAGES = 5;
-
     private int usageCount;
-    private int sugarCount;
-    private int beanCount;
-    private int waterCount;
-    private int milkCount;
+    private Products products;
 
-    public CoffeeMachine(int sugarCount, int beanCount, int waterCount, int milkCount) {
-        this.sugarCount = sugarCount;
-        this.beanCount = beanCount;
-        this.waterCount = waterCount;
-        this.milkCount = milkCount;
+    public CoffeeMachine(Products products) {
+        this.products = products;
     }
 
     public void addProducts(int sugarCount, int beanCount, int waterCount, int milkCount) {
-        this.sugarCount += sugarCount;
-        this.beanCount += beanCount;
-        this.waterCount += waterCount;
-        this.milkCount += milkCount;
+       this.products.addSugar(sugarCount);
+        this.products.addBeans(beanCount);
+        this.products.addWater(waterCount);
+        this.products.addMilk(milkCount);
     }
 
     public void clean() {
@@ -80,30 +73,19 @@ public class CoffeeMachine {
             return;
         }
 
-        this.sugarCount -= requiredSugar;
-        this.beanCount -= requiredBeans;
-        this.waterCount -= requiredWater;
-        this.milkCount -= requiredMilk;
+        this.products.removeSugar(requiredSugar);
+        this.products.removeBeans(requiredBeans);
+        this.products.removeWater(requiredWater);
+        this.products.removeMilk(requiredMilk);
         this.usageCount++;
         System.out.println("Your coffee is ready!");
     }
 
     private boolean enoughProducts(int sugarCount, int beanCount, int waterCount, int milkCount) {
-        return sugarCount <= this.sugarCount - sugarCount  &&
-                beanCount <= this.beanCount - beanCount &&
-                waterCount <= this.waterCount - waterCount &&
-                milkCount <= this.milkCount - milkCount;
+        return sugarCount <= this.products.getSugarCount() - sugarCount  ||
+                beanCount <= this.products.getBeanCount() - beanCount ||
+                waterCount <= this.products.getWaterCount() - waterCount ||
+                milkCount <= this.products.getMilkCount() - milkCount;
     }
 
-    //chill I will explain later :)
-    @Override
-    public String toString() {
-        return "CoffeeMachine{" +
-                "\nusageCount=" + usageCount +
-                ",\nsugarCount=" + sugarCount +
-                ",\nbeanCount=" + beanCount +
-                ",\nwaterCount=" + waterCount +
-                ",\nmilkCount=" + milkCount +
-                "\n}";
-    }
 }

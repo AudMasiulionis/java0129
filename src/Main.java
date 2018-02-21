@@ -1,9 +1,10 @@
 import coffee.CoffeeMachine;
+import coffee.Products;
 
 import java.util.Scanner;
 
 public class Main {
-    private static CoffeeMachine coffeeMachine = new CoffeeMachine(10, 10, 10, 10);
+    private static CoffeeMachine coffeeMachine = new CoffeeMachine(new Products(10,10,10,10));
     private static boolean runProgram = true;
 
     public static void main(String[] args) {
