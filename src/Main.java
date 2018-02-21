@@ -1,3 +1,4 @@
+import coffee.CoffeeCup;
 import coffee.CoffeeMachine;
 import coffee.Products;
 
@@ -65,7 +66,13 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("What kind of coffee you want to order?");
         String input = sc.next();
-        coffeeMachine.makeCoffee(input);
+        CoffeeCup coffee =  coffeeMachine.makeCoffeeCup(input);
+        if (coffee == null){
+            System.out.println();
+            return;
+        }
+
+        System.out.println(coffee.toString());
     }
 
 }

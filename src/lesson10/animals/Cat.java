@@ -15,4 +15,16 @@ public class Cat extends Animal {
         System.out.println("MEW!");
     }
 
+
+    public Animal makeAnimal(boolean something){
+        if (something){
+            return new Animal("123");
+        }
+        else {
+            return new Cat("234");
+        }
+    }
+
+
+
 }

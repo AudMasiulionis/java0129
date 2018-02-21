@@ -5,13 +5,16 @@ import lesson10.animals.Cat;
 
 public class Main {
     public static void main(String[] args) {
-        Animal animal = new Animal("name");
-        System.out.println(animal.getName());
-        System.out.println(animal.toString());
+        Cat a = new Cat("name");
+        Animal animal = a.makeAnimal(true);
 
-        Cat cat = new Cat("Mice");
-        System.out.println(cat.getName());
+        if (animal instanceof Animal){
+            System.out.println("Animal");
+        }
+        if(animal instanceof Cat){
+            System.out.println("Cat");
+            Cat cat = (Cat)animal;
+        }
 
-        new Object();
     }
 }

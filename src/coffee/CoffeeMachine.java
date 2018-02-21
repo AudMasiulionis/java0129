@@ -43,6 +43,26 @@ public class CoffeeMachine {
         }
     }
 
+    public CoffeeCup makeCoffeeCup(String coffeeType){
+        if (this.usageCount == this.MAX_USAGES) {
+            System.out.println("Time to clean your machine");
+            return null;
+        }
+
+        switch (coffeeType) {
+            case "black":
+                this.makeBlack();
+                return this.makeBlackCup();
+            case "latte":
+                this.makeLatte();
+                return this.makeLatteCup();
+            case "espresso":
+                return this.makeEspressoCup();
+            default:
+                return null;
+        }
+    }
+
     private void makeBlack() {
         final int requiredSugar = 1;
         final int requiredBeans = 2;
@@ -67,6 +87,60 @@ public class CoffeeMachine {
         this.makeProduct(requiredSugar, requiredBeans, requiredWater, requiredMilk);
     }
 
+    private BlackCoffee makeBlackCup() {
+        final int requiredSugar = 1;
+        final int requiredBeans = 2;
+        final int requiredWater = 3;
+        final int requiredMilk = 0;
+
+        if (!this.enoughProducts(requiredSugar, requiredBeans, requiredWater, requiredMilk)) {
+            System.out.println("Not enough products for coffee");
+            return null;
+        }
+
+        return new BlackCoffee(new Products(
+                requiredSugar,
+                requiredBeans,
+                requiredWater,
+                requiredMilk ));
+    }
+
+    private LatteCoffee makeLatteCup() {
+        final int requiredSugar = 1;
+        final int requiredBeans = 2;
+        final int requiredWater = 2;
+        final int requiredMilk = 2;
+
+        if (!this.enoughProducts(requiredSugar, requiredBeans, requiredWater, requiredMilk)) {
+            System.out.println("Not enough products for coffee");
+            return null;
+        }
+
+        return new LatteCoffee(new Products(
+                requiredSugar,
+                requiredBeans,
+                requiredWater,
+                requiredMilk ));
+    }
+
+    private EspressoCoffee makeEspressoCup() {
+        final int requiredSugar = 1;
+        final int requiredBeans = 2;
+        final int requiredWater = 1;
+        final int requiredMilk = 0;
+
+        if (!this.enoughProducts(requiredSugar, requiredBeans, requiredWater, requiredMilk)) {
+            System.out.println("Not enough products for coffee");
+            return null;
+        }
+
+        return new EspressoCoffee(new Products(
+                requiredSugar,
+                requiredBeans,
+                requiredWater,
+                requiredMilk ));
+    }
+
     private void makeProduct(int requiredSugar, int requiredBeans, int requiredWater, int requiredMilk) {
         if (!this.enoughProducts(requiredSugar, requiredBeans, requiredWater, requiredMilk)) {
             System.out.println("Not enough products for coffee");
@@ -88,4 +162,11 @@ public class CoffeeMachine {
                 milkCount <= this.products.getMilkCount() - milkCount;
     }
 
+    @Override
+    public String toString() {
+        return "CoffeeMachine{" +
+                ", usageCount=" + usageCount +
+                ", products=" + products.toString() +
+                '}';
+    }
 }
