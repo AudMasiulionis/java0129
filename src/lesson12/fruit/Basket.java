@@ -7,6 +7,9 @@ public class Basket {
     private ArrayList<Fruit> fruits = new ArrayList<>();
 
     public void addFruit(Fruit fruit) {
+        if (this.isFull()){
+            return;
+        }
         this.fruits.add(fruit);
     }
 
@@ -41,8 +44,8 @@ public class Basket {
         return String.format("Basket contains:" +
                         "\n%d apples" +
                         "\n%d oranges" +
-                        "\n%d other fruit."
-                , appleCount, orangeCount, otherFruitCount);
+                        "\n%d other fruit.",
+                appleCount, orangeCount, otherFruitCount);
     }
 
 }

@@ -7,6 +7,9 @@ public class BasicBasket {
     private ArrayList<String> apples = new ArrayList<>();
 
     public void addApple(String appleName){
+        if(this.isFull()){
+            return;
+        }
         this.apples.add(appleName);
     }
 

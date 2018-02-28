@@ -5,27 +5,25 @@ import java.util.InputMismatchException;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int input = sc.nextInt();
-        double result = 4.0 / 6 - input;
-        System.out.println(result);
+        try {
+            Person p = new Person();
+            p.hello();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
+    static int intInput() {
+        try {
+            System.out.println("Ivesk skaicius");
+            Scanner sc = new Scanner(System.in);
+            return sc.nextInt();
+        } catch (Exception ex){
+            System.out.println("Klaidinga ivestis");
+            return intInput();
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 
 //     try {
 //        Scanner sc = new Scanner(System.in);
