@@ -5,13 +5,11 @@ import java.util.InputMismatchException;
 
 public class Main {
     public static void main(String[] args) {
-        try {
-            Person p = new Person();
-            p.hello();
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+
     }
+
+
+
 
     static int intInput() {
         try {
